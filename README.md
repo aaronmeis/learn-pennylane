@@ -2,6 +2,22 @@
 
 A beginner-friendly PennyLane project demonstrating basic quantum circuit operations and optimization.
 
+<div style="background-color: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 16px; margin: 20px 0; color: #212529;">
+
+**📚 Learning Project Disclaimer**
+
+This is a **learning project** designed to help you get started with PennyLane and quantum computing workflows. 
+
+**Don't worry about understanding all the intricate quantum details at this point!** The focus here is on:
+- ✅ Getting familiar with running quantum computing projects
+- ✅ Understanding project orchestration and setup
+- ✅ Learning how to work with Docker containers
+- ✅ Seeing how quantum circuits are structured and visualized
+
+**Later examples will dive deeper into the quantum components** (gates, entanglement, measurements, etc.). For now, just focus on getting comfortable with the tools and workflow!
+
+</div>
+
 ## What is PennyLane?
 
 PennyLane is a Python library for quantum machine learning, quantum computing, and quantum chemistry. It provides a unified interface to work with quantum simulators and real quantum hardware.
@@ -85,24 +101,20 @@ This project demonstrates:
 The following diagram shows the structure of our variational quantum circuit:
 
 ```mermaid
-graph LR
-    subgraph "Qubit 0"
-        Q0[|0⟩] --> RY1[RY(θ₀)]
-        RY1 --> CNOT1[●]
-        CNOT1 --> RY3[RY(θ₂)]
-        RY3 --> M1[Measure Z]
-    end
+flowchart LR
+    Q0Start[Qubit 0: State 0] --> RY1[RY gate theta0]
+    RY1 --> CNOT1[CNOT Control]
+    CNOT1 --> RY3[RY gate theta2]
+    RY3 --> M1[Measure Z]
     
-    subgraph "Qubit 1"
-        Q1[|0⟩] --> RY2[RY(θ₁)]
-        RY2 --> CNOT2[X]
-        CNOT2 --> M2[Output]
-    end
+    Q1Start[Qubit 1: State 0] --> RY2[RY gate theta1]
+    RY2 --> CNOT2[CNOT Target]
+    CNOT2 --> Q1End[Output]
     
-    CNOT1 -.-> CNOT2
+    CNOT1 -.Entanglement.-> CNOT2
     
-    style Q0 fill:#e1f5ff
-    style Q1 fill:#e1f5ff
+    style Q0Start fill:#e1f5ff
+    style Q1Start fill:#e1f5ff
     style RY1 fill:#fff4e1
     style RY2 fill:#fff4e1
     style RY3 fill:#fff4e1
